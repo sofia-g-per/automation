@@ -29,22 +29,26 @@
               <div id="complete" class="tabcontent">
                 <div class="main-box">
                     <!-- Поиск, refresh, ping на вкладке "обзор" -->
-                    <div class="srch-box">
-                      <input
-                        type="text"
-                        class="search-txt"
-                        type="text"
-                        name=""
-                        placeholder="Поиск хостов"
-                      />
-                        <button class="search first-line">Search</button>
+                    <form class="srch-box">
+                      <div> 
+                        <input
+                          type="text"
+                          class="search-txt"
+                          type="text"
+                          name="sg"
+                          placeholder="Поиск хостов"
+                        />
+                        <button class="search first-line" type="submit">Search</button>
+                      </div>
+                      <div>
                         <button class="refresh first-line">Refresh</button>
                         <button class="ping first-line">Ping</button>
-                    </div>
+                      </div>
+                    </form>
                     <!-- Список скриптов на вкладке "обзор" -->
                     <div class="list-scripts">
                       <!-- Первый скрипт на вкладке "обзор" -->
-                      {% for hostGroup in hosts %}
+                      {% for hostGroup in hostGroups %}
                       <div class="{{forloop.counter}}-script script" >
                         <!-- Кнопка раскрытия информации, чекбок и название скрипта-->
                         <div class="name-script">
@@ -84,20 +88,23 @@
               <div id="udp_groups" class="tabcontent">
                 <div class="main-box">
                   <!-- Поиск, refresh, ping на вкладке "Редактирование групп" -->
-                  <div class="srch-box">
-                    <input
-                      type="text"
-                      class="search-txt"
-                      type="text"
-                      name=""
-                      placeholder="Поиск хостов"
-                    />
+                  <form class="srch-box">
+                    <div>
+                      <input
+                        type="text"
+                        class="search-txt"
+                        type="text"
+                        name="sg"
+                        placeholder="Поиск хостов"
+                      />
+                      <button class="search first-line" type="submit">Search</button>
+                    </div>
                       <button class="ping delete first-line">Delete</button>
-                  </div>
+                  </form>
                   <!-- Список скриптов на вкладке "Редактирование групп" -->
                   <div class="list-scripts">
                     <!-- Первый скрипт на вкладке "Редактирование групп"-->
-                    {% for hostGroup in hosts %}
+                    {% for hostGroup in hostGroups %}
                       <div class="{{forloop.counter}}-script script" >
                         <!-- Кнопка раскрытия информации, чекбок и название скрипта-->
                         <div class="name-script">
@@ -135,18 +142,22 @@
               </div>
               <div id="udp_hosts" class="tabcontent">
                 <div class="main-box">
-                  <div class="srch-box">
-                    <input
-                      type="text"
-                      class="search-txt"
-                      type="text"
-                      name=""
-                      placeholder="Поиск хостов"
-                    />
-                      <button class="search first-line">Search</button>
+                  <form class="srch-box">
+                    <div>
+                      <input
+                        type="text"
+                        class="search-txt"
+                        type="text"
+                        name="s"
+                        placeholder="Поиск хостов"
+                      />
+                      <button class="search first-line" type="submit">Search</button>
+                    </div>
+                    <div>
                       <button class="refresh first-line">Refresh</button>
                       <button class="ping first-line">Delete</button>
-                  </div>
+                    </div>
+                  </form>
                   <div class="list-hosts">
                     <div class="hosts">
                       <!-- Кнопка раскрытия информации, чекбокc и название скрипта-->
@@ -161,79 +172,17 @@
                             <th>Железо</th>
                             <th>Доступ</th>
                           </tr>
-                          <tr>
-                            <th bordercolor="white">
-                            <input type="checkbox" id="" name="" /></th>
-                            <th>ХАБ 20</th>
-                            <th>aim.ssdp.z</th>
-                            <th>192.168.0.20</th>
-                            <th>Виртуальная машина</th>
-                            <th>ВМ</th>
-                            <th>Ping</th>
-                          </tr>
-                          <tr>
-                            <th><input type="checkbox" id="" name="" /></th>
-                            <th>Сетевой контроллер домена</th>
-                            <th>sso.a.pods</th>
-                            <th>192.168.0.21</th>
-                            <th>Виртуальная машина</th>
-                            <th>ВМ</th>
-                            <th>Ping</th>
-                          </tr>
-                          <tr>
-                            <th><input type="checkbox" id="" name="" /></th>
-                            <th>Сервер репозиторий с дистирути...</th>
-                            <th>shi.shil.aaaaa</th>
-                            <th>192.168.0.22</th>
-                            <th>Виртуальная машина</th>
-                            <th>ВМ</th>
-                            <th>Ping</th>
-                          </tr>
-                          <tr>
-                            <th><input type="checkbox" id="" name="" /></th>
-                            <th>Сервер рабочий</th>
-                            <th>o,s29,d94.aa</th>
-                            <th>192.168.0.23</th>
-                            <th>Виртуальная машина</th>
-                            <th>ВМ</th>
-                            <th>Ping</th>
-                          </tr>
-                          <tr>
-                            <th><input type="checkbox" id="" name="" /></th>
-                            <th>ХАБ 21</th>
-                            <th>op.asdfdf.00</th>
-                            <th>192.168.0.20</th>
-                            <th>Сервер вычислительная техника</th>
-                            <th>PC linax</th>
-                            <th>Ping</th>
-                          </tr>
-                          <tr>
-                            <th><input type="checkbox" id="" name="" /></th>
-                            <th>Сетевой контроллер домена</th>
-                            <th>ashdn.dsdj.12</th>
-                            <th>192.168.0.21</th>
-                            <th>Сервер вычислительная техника</th>
-                            <th>Сервер sa</th>
-                            <th>Ping</th>
-                          </tr>
-                          <tr>
-                            <th><input type="checkbox" id="" name="" /></th>
-                            <th>Сервер репозиторий с дистирути...</th>
-                            <th>0kdk.sdio.s0s1</th>
-                            <th>192.168.0.22</th>
-                            <th>Сервер вычислительная техника</th>
-                            <th>Сервер на интеле</th>
-                            <th>Ping</th>
-                          </tr>
-                          <tr>
-                            <th><input type="checkbox" id="" name="" /></th>
-                            <th>Сервер плавающий</th>
-                            <th>amsnj,diso,233</th>
-                            <th>192.168.0.23</th>
-                            <th>Сервер вычислительная техника</th>
-                            <th>PC Ubuntu</th>
-                            <th>Ping</th>
-                          </tr>
+                            {% for host in hosts %}
+                              <tr>
+                                <td bordercolor="white"> <input type="checkbox" id="" name="" /></td>
+                                <td>{{ host.name }}</td>
+                                <td>{{ host.network_name }}</td>
+                                <td>{{ host.ip }}</td>
+                                <td>{{ host.group.name }}</td>
+                                <td>{{ host.hardware }}</td>
+                                <td>Ping</td>
+                              </tr>
+                            {% endfor %}
                         </table>
                       </div>
                     </div>
@@ -249,16 +198,19 @@
             </div>
             <div id="list-scripts" class="tabcontent">
               <div class="main-box">
-                <div class="srch-name">
-                  <input
-                    type="text"
-                    class="search-txt"
-                    type="text"
-                    name=""
-                    placeholder="Поиск по наименованию"
-                  />
+                <form class="srch-name">
+                  <div>
+                    <input
+                      type="text"
+                      class="search-txt"
+                      type="text"
+                      name="ss"
+                      placeholder="Поиск по наименованию"
+                    />
+                    <button class="search first-line" type="submit">Search</button>
+                  </div>
                   <button class="refresh first-line">Refresh</button>
-                </div>
+                </form>
                 <div class="table-scripts">
                   <table>
                       <tr >
@@ -270,42 +222,17 @@
                         <th>Расположение</th>
                         <th>Описание</th>
                       </tr>
-                    <tr>
-                      <th>Скрипт аабб</th>
-                      <th>12.04.2020</th>
-                      <th>v1_22.03.2022</th>
-                      <th>56 Кб</th>
-                      <th>Файл “TXT”</th>
-                      <th>/playbook/install/htop_install.yml</th>
-                      <th>Для пк 1 розовый</th>
-                    </tr>
-                    <tr>
-                      <th>Скрипт 123059</th>
-                      <th>14.09.2021</th>
-                      <th>v3_10.04.2022</th>
-                      <th>38 Кб</th>
-                      <th>Файл “TXT”</th>
-                      <th>/playbook/install/htop_install.yml</th>
-                      <th>Редактировал серый</th>
-                    </tr>
-                    <tr>
-                      <th>Скрипт РАБОЧИЙ ВЕР2</th>
-                      <th>20.11.2021</th>
-                      <th>v8_22.05.2022</th>
-                      <th>200 Мб</th>
-                      <th>Файл “TXT”</th>
-                      <th>/playbook/install/htop_install.yml</th>
-                      <th>Скрипт для ВСЕХ серваков</th>
-                    </tr>
-                    <tr>
-                      <th>Скрипт от которого упадет твоя м...</th>
-                      <th>22.10.2022</th>
-                      <th>v10_20.03.2022</th>
-                      <th>1 Гб</th>
-                      <th>Файл “TXT”</th>
-                      <th>/playbook/install/htop_install.yml</th>
-                      <th>Скрипт для ВСЕХ пк настр...</th>
-                    </tr>
+                    {% for script in scripts %}
+                      <tr>
+                        <td>{{ script.name }}</td>
+                        <td>{{ script.creation_date }}</td>
+                        <td>{{ script.version }}</td>
+                        <td>{{ script.size }}</td>
+                        <td>Файл "{{ script.file_type }}"</td>
+                        <td>{{ script.path }}</td>
+                        <td>{{ script.description }}</td>
+                      </tr>
+                    {% endfor %}
                   </table>
                 </div> 
             </div>  
@@ -318,28 +245,28 @@
           <li class="tab-content__item js-tab-content" data-tab="3">
             <div class="tab">
               <button class="tablinks" onclick="openTab(event, 'users') " id="defaultOpen">Пользователи</button>
-              <button class="tablinks" onclick="openTab(event, 'results')">Редактирование групп</button>
+              <button class="tablinks" onclick="openTab(event, 'results')">Результаты выполнения</button>
           </div>
           <!--  Контент первой вкладки  -->
             <div id="users" class="tabcontent">
               <div class="main-box">
-                  <div class="srch-box">
+                  <form class="srch-box">
                     <input
                       type="text"
                       class="search-txt"
                       type="text"
-                      name=""
+                      name="su"
                       placeholder="Поиск"
                     />
-                      <button class="search first-line">Search</button>
                       <label class="sort-txt"> Сортировать по:</label>
-                      <input type="radio" class="custom-checkbox" id="users" name="users" value="yes">
-                      <label class="text" for="users">по дате</label>
-                      <input type="radio" class="custom-checkbox" id="date" name="date" value="yes">
-                      <label class="text" for="date">по пользователю</label>
-                      <input type="radio" class="custom-checkbox" id="groups" name="groups" value="yes">
-                      <label class="text" for="groups">по группе</label>
-                  </div>
+                      <input type="radio" class="custom-checkbox" id="date" name="sort-u" value="action_date">
+                      <label class="text" for="date">по дате</label>
+                      <input type="radio" class="custom-checkbox" id="users" name="sort-u" value="user__name">
+                      <label class="text" for="users">по пользователю</label> 
+                      {% comment %} <input type="radio" class="custom-checkbox" id="groups" name="groups" value="yes">
+                      <label class="text" for="groups">по группе</label> {% endcomment %}
+                    <button class="search first-line" type="submit">Search</button>
+                  </form>
                       <div class="table-users">
                         <table>
                             <tr >
@@ -347,44 +274,36 @@
                               <th class="first" >Дата и время</th>
                               <th class="first" >Сообщение</th>
                             </tr>
-                          <tr>
-                            <th>sergey1002</th>
-                            <th>19.07.2023 19:00</th>
-                            <th>Изменен “Скрипт аабб"</th>
-                          </tr>
-                          <tr>
-                            <th>vladikdik</th>
-                            <th>20.07.2023 9:00</th>
-                            <th>Применен “Скрипт РАБОЧИЙ ВЕР 2"</th>
-                          </tr>
-                          <tr>
-                            <th>vladikdik</th>
-                            <th>20.01.2023 9:00</th>
-                            <th>Применен “Скрипт от которого упадет твоя материнка”</th>
-                          </tr>
+                          {% for userLog in userLogs %}
+                            <tr>
+                              <td>{{ userLog.user__name }}</td>
+                              <td>{{ userLog.action_date }}</td>
+                              <td>{{ userLog.action_description }}</td>
+                            </tr>
+                          {% endfor %}
                         </table>
                       </div> 
               </div>  
             </div>
             <div id="results" class="tabcontent">
               <div class="main-box">
-                <div class="srch-box">
+                <form class="srch-box">
                   <input
                     type="text"
                     class="search-txt"
                     type="text"
-                    name=""
+                    name="ssr"
                     placeholder="Поиск"
                   />
-                    <button class="search first-line">Search</button>
                     <label class="sort-txt"> Сортировать по:</label>
-                    <input type="radio" class="custom-checkbox" id="users" name="users" value="yes">
-                    <label class="text" for="users">по дате</label>
-                    <input type="radio" class="custom-checkbox" id="date" name="date" value="yes">
-                    <label class="text" for="date">по пользователю</label>
-                    <input type="radio" class="custom-checkbox" id="groups" name="groups" value="yes">
+                    <input type="radio" class="custom-checkbox" id="date" name="sort-s" value="run_date">
+                    <label class="text" for="date">по дате</label>
+                    {% comment %} <input type="radio" class="custom-checkbox" id="users" name="users" value="yes">
+                    <label class="text" for="users">по пользователю</label> {% endcomment %}
+                    <input type="radio" class="custom-checkbox" id="groups" name="sort-s" value="run_for__group">
                     <label class="text" for="groups">по группе</label>
-                </div>
+                    <button class="search first-line" type="submit">Search</button>
+                </form>
 
                 <div class="table-results">
                   <table>
@@ -395,20 +314,15 @@
                         <th class="first" >Группы</th>
                         <th class="first" >Результат выполнения</th>
                       </tr>
-                    <tr>
-                      <th>Скрипт аабб</th>
-                      <th>19.07.2023 19:00</th>
-                      <th>192.168.0.20</th>
-                      <th>Виртуальная маш...</th>
-                      <th>Успешно</th>
-                    </tr>
-                    <tr>
-                      <th>Скрипт РАБОЧИЙ ВЕР2</th>
-                      <th>20.07.2023 9:00</th>
-                      <th>192.168.0.10</th>
-                      <th>Сервер вычислит...</th>
-                      <th>Код ошибки 2003</th>
-                    </tr>
+                    {% for scriptResult in scriptResults %}
+                      <tr>
+                        <td>{{ scriptResult.script.name }}</td>
+                        <td>{{ scriptResult.run_date }}</td>
+                        <td>{{ scriptResult.run_for.ip }}</td>
+                        <td>{{ scriptResult.run_for.group }}</td>
+                        <td>{{ scriptResult.result }}</td>
+                      </tr>
+                    {% endfor %}
                   </table>
                 </div> 
             </div>

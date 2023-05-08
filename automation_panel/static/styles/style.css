@@ -124,7 +124,8 @@ body {
 .srch-box{
     margin-left: 16%;
     height: 40px;
-    width: 95%;
+    display: flex;
+    justify-items: space-between;
 }
 
 .search-txt{
@@ -156,9 +157,6 @@ body {
     background-color: #00BFFF;
 }
 
-.refresh{
-    margin-left: 49%
-}
 
 .ping{
     margin-left: 1%;
@@ -349,10 +347,6 @@ select{
     border-collapse: collapse;
 }
 
-
-.srch-name .refresh{
-    margin-left: 55%
-}
 
 .table-scripts table{
     padding: 30px;

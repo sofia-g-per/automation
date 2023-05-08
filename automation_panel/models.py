@@ -35,7 +35,7 @@ class ScriptResult(models.Model):
     script = models.ForeignKey(Script, on_delete = models.SET_NULL, blank=True, null=True)
     run_date = models.DateTimeField(auto_now_add=True)
     result = models.CharField(max_length=200)
-    run_for = models.ManyToManyField(Host)
+    run_for = models.ForeignKey(Host, on_delete = models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f'{self.script.name} {self.run_date} {self.result}'

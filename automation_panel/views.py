@@ -1,17 +1,26 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import HostGroup, Host
+from .models import HostGroup, Host, Script, ScriptResult
 from .forms import HostForm
-
+from .viewHelpers import search
+from .modelSearchMethods import searchHostGroups, searchHosts, searchScripts, searchScriptResults
 # главная страница
 def index(request):
-    hostGroups = HostGroup.objects.all()
-    print(hostGroups[0].host_set)
-    # currentGroupIndex = 0
+    
+    hosts = search(request, 's', '', searchHosts, Host)
+    hostGroups = search(request, 'sg', '', searchHostGroups, HostGroup)
     for group in hostGroups:
         group.hosts = group.host_set.all()
+
+    scripts = search(request, 'ss', '', searchScripts,  Script)
+    scriptResults = search(request, 'ssr', 'sort-s', searchScriptResults,  ScriptResult)
+    userLog = search(request, 'su', 'sort-u', searchScriptResults,  ScriptResult)
+
     context = {
-        "hosts": hostGroups,
+        "hosts": hosts,
+        "hostGroups": hostGroups,
+        "scripts": scripts,
+        "userLog": userLog,
+        "scriptResults": scriptResults
     }
 
     return render(request, "index.html" , context)
@@ -25,7 +34,6 @@ def createHost(request):
     }
 
     if(request.method == "POST"):
-        print("post")
         form = HostForm(request.POST)
 
         if(form.is_valid()):
@@ -34,6 +42,4 @@ def createHost(request):
         else:
             context["form"] = form
         
-    print("form")
-    print(context)
     return render(request, "create_host.html", context)
