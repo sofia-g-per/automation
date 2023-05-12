@@ -1,0 +1,172 @@
+    {% load static %}
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'complete') " id="defaultOpen">Выполнение скриптов</button>
+        <button class="tablinks" onclick="openTab(event, 'udp_groups')">Редактирование групп</button>
+        <button class="tablinks" onclick="openTab(event, 'udp_hosts')">Редактирвание хостов</button>
+    </div>
+    <!--  Контент первой вкладки  -->
+      <div id="complete" class="tabcontent">
+        <div class="main-box">
+            <!-- Поиск, refresh, ping на вкладке "обзор" -->
+            <form class="srch-box">
+              <div> 
+                <input
+                  type="text"
+                  class="search-txt"
+                  type="text"
+                  name="sg"
+                  placeholder="Поиск хостов"
+                />
+                <button class="search first-line" type="submit">Search</button>
+              </div>
+              <div>
+                <a class="refresh first-line">Refresh</a>
+                <button class="ping first-line">Ping</button>
+              </div>
+            </form>
+            <!-- Список скриптов на вкладке "обзор" -->
+            <div class="list-scripts">
+              <!-- Первый скрипт на вкладке "обзор" -->
+              {% for hostGroup in hostGroups %}
+              <div class="{{forloop.counter}}-script script" >
+                <!-- Кнопка раскрытия информации, чекбок и название скрипта-->
+                <div class="name-script">
+                    <img src="{% static 'img/arrow.svg' %}" alt="arrow" width="40" />
+                    <input type="checkbox" id="" name="" class="checkbox{{forloop.counter}}"/>
+                    <p class="name">{{ hostGroup.name }}</p>
+                  <table class="table-info{{forloop.counter}}">
+                    <tr>
+                      <th></th>
+                      <th>Наименование</th>
+                      <th>Сетевое имя</th>
+                      <th>IP-адрес</th>
+                      <th>Железо</th>
+                      <th>Доступ</th>
+                    </tr>
+                    {% for host in hostGroup.hosts %}
+                    <tr>
+                      <td><input type="checkbox" id="" name="" /></td>
+                      <td>{{ host.name }}</td>
+                      <td>{{ host.network_name }}</td>
+                      <td>{{ host.ip }}</td>
+                      <td>{{ host.hardware }}</td>
+                      <td>Ping</td>
+                    </tr>
+                    {% endfor %}
+      
+                  </table>
+                </div>
+                <!-- Информация о скрипте (таблица) -->
+              </div>
+              {% endfor %}
+              <!-- Кнопка выполнение скрипта -->
+            <button class="btn-script">Выполнить скрипт</button>
+            </div>
+        </div>  
+      </div>
+      <div id="udp_groups" class="tabcontent">
+        <div class="main-box">
+          <!-- Поиск, refresh, ping на вкладке "Редактирование групп" -->
+          <form class="srch-box">
+            <div>
+              <input
+                type="text"
+                class="search-txt"
+                type="text"
+                name="sg"
+                placeholder="Поиск хостов"
+              />
+              <button class="search first-line" type="submit">Search</button>
+            </div>
+              <input class="ping delete first-line" type="submit" form="delete-host-groups-form" value="Delete">
+          </form>
+          <!-- Список скриптов на вкладке "Редактирование групп" -->
+          <div class="list-scripts">
+            <!-- Первый скрипт на вкладке "Редактирование групп"-->
+            {% for hostGroup in hostGroups %}
+              <div class="{{forloop.counter}}-script script" >
+                <!-- Кнопка раскрытия информации, чекбок и название скрипта-->
+                <form class="name-script" name="delete-host-groups-form" action="{% url 'delete-host-groups' %}">
+                    <img src="{% static 'img/pencil.png' %}" alt="arrow" width="38" />
+                    <input type="checkbox" id="" value="{{hostGroup.id}}" name="deleteHostGroups" class="checkbox{{forloop.counter}}"/>
+                    <label class="name">{{ hostGroup.name }}</label>
+                  <table class="table-info{{forloop.counter}}">
+                    <tr>
+                      <th></th>
+                      <th>Наименование</th>
+                      <th>Сетевое имя</th>
+                      <th>IP-адрес</th>
+                      <th>Железо</th>
+                      <th>Доступ</th>
+                    </tr>
+                    {% for host in hostGroup.hosts %}
+                    <tr>
+                      <td><input type="checkbox" id="" name="" /></td>
+                      <td>{{ host.name }}</td>
+                      <td>{{ host.network_name }}</td>
+                      <td>{{ host.ip }}</td>
+                      <td>{{ host.hardware }}</td>
+                      <td>Ping</td>
+                    </tr>
+                    {% endfor %}
+      
+                  </table>
+                </form>
+              </div>
+            {% endfor %}
+            <!-- Кнопка добавления группы -->
+          <button class="btn-script" >Добавить хост в группу</button>
+          </div>
+        </div>  
+      </div>
+      <div id="udp_hosts" class="tabcontent">
+        <div class="main-box">
+          <form class="srch-box">
+            <div>
+              <input
+                type="text"
+                class="search-txt"
+                type="text"
+                name="s"
+                placeholder="Поиск хостов"
+              />
+              <button class="search first-line" type="submit">Search</button>
+            </div>
+            <div>
+              <a class="refresh first-line">Refresh</a>
+              <input class="ping first-line" form="delete-hosts-form" type="submit" value="Delete"/>
+            </div>
+          </form>
+          <div class="list-hosts">
+            <div class="hosts">
+              <!-- Кнопка раскрытия информации, чекбокc и название скрипта-->
+              <form class="name-hosts" id="delete-hosts-form" action="{% url 'delete-hosts' %}">
+                <table>
+                  <tr>
+                    <th></th>
+                    <th>Наименование</th>
+                    <th>Сетевое имя</th>
+                    <th>IP-адрес</th>
+                    <th>Группа</th>
+                    <th>Железо</th>
+                    <th>Доступ</th>
+                  </tr>
+                    {% for host in hosts %}
+                      <tr>
+                        <td bordercolor="white"> <input type="checkbox" value="{{host.id}}" name="deleteHosts" /></td>
+                        <td>{{ host.name }}</td>
+                        <td>{{ host.network_name }}</td>
+                        <td>{{ host.ip }}</td>
+                        <td>{{ host.group.name }}</td>
+                        <td>{{ host.hardware }}</td>
+                        <td>Ping</td>
+                      </tr>
+                    {% endfor %}
+                </table>
+              </form>
+            </div>
+            <!-- Кнопка добавления хоста -->
+            <a href="{% url 'create-host' %}" class="btn-add"> <button class="btn-script">Добавить хост</button></a>
+          </div>
+      </div>  
+      </div>

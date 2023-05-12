@@ -41,7 +41,7 @@
                         <button class="search first-line" type="submit">Search</button>
                       </div>
                       <div>
-                        <button class="refresh first-line">Refresh</button>
+                        <a class="refresh first-line">Refresh</a>
                         <button class="ping first-line">Ping</button>
                       </div>
                     </form>
@@ -99,7 +99,7 @@
                       />
                       <button class="search first-line" type="submit">Search</button>
                     </div>
-                      <button class="ping delete first-line">Delete</button>
+                      <input class="ping delete first-line" type="submit" form="delete-host-groups-form" value="Delete">
                   </form>
                   <!-- Список скриптов на вкладке "Редактирование групп" -->
                   <div class="list-scripts">
@@ -107,9 +107,9 @@
                     {% for hostGroup in hostGroups %}
                       <div class="{{forloop.counter}}-script script" >
                         <!-- Кнопка раскрытия информации, чекбок и название скрипта-->
-                        <div class="name-script">
+                        <form class="name-script" name="delete-host-groups-form" action="{% url 'delete-host-groups' %}">
                             <img src="{% static 'img/pencil.png' %}" alt="arrow" width="38" />
-                            <input type="checkbox" id="" name="" class="checkbox{{forloop.counter}}"/>
+                            <input type="checkbox" id="" value="{{hostGroup.id}}" name="deleteHostGroups" class="checkbox{{forloop.counter}}"/>
                             <label class="name">{{ hostGroup.name }}</label>
                           <table class="table-info{{forloop.counter}}">
                             <tr>
@@ -132,7 +132,7 @@
                             {% endfor %}
               
                           </table>
-                        </div>
+                        </form>
                       </div>
                     {% endfor %}
                     <!-- Кнопка добавления группы -->
@@ -154,7 +154,7 @@
                       <button class="search first-line" type="submit">Search</button>
                     </div>
                     <div>
-                      <button class="refresh first-line">Refresh</button>
+                      <a class="refresh first-line">Refresh</a>
                       <input class="ping first-line" form="delete-hosts-form" type="submit" value="Delete"/>
                     </div>
                   </form>
@@ -209,7 +209,7 @@
                     />
                     <button class="search first-line" type="submit">Search</button>
                   </div>
-                  <button class="refresh first-line">Refresh</button>
+                  <a class="refresh first-line">Refresh</a>
                 </form>
                 <div class="table-scripts">
                   <table>
@@ -246,7 +246,7 @@
             <div class="tab">
               <button class="tablinks" onclick="openTab(event, 'users') " id="defaultOpen">Пользователи</button>
               <button class="tablinks" onclick="openTab(event, 'results')">Результаты выполнения</button>
-          </div>
+            </div>
           <!--  Контент первой вкладки  -->
             <div id="users" class="tabcontent">
               <div class="main-box">
@@ -261,7 +261,7 @@
                       <label class="sort-txt"> Сортировать по:</label>
                       <input type="radio" class="custom-checkbox" id="date" name="sort-u" value="action_date">
                       <label class="text" for="date">по дате</label>
-                      <input type="radio" class="custom-checkbox" id="users" name="sort-u" value="user__name">
+                      <input type="radio" class="custom-checkbox" id="users" name="sort-u" value="user__username">
                       <label class="text" for="users">по пользователю</label> 
                       {% comment %} <input type="radio" class="custom-checkbox" id="groups" name="groups" value="yes">
                       <label class="text" for="groups">по группе</label> {% endcomment %}
@@ -276,7 +276,7 @@
                             </tr>
                           {% for userLog in userLogs %}
                             <tr>
-                              <td>{{ userLog.user__name }}</td>
+                              <td>{{ userLog.user }}</td>
                               <td>{{ userLog.action_date|date:"d.m.Y G:i" }}</td>
                               <td>{{ userLog.action_description }}</td>
                             </tr>

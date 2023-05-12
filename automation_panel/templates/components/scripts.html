@@ -1,0 +1,48 @@
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'list-scripts') " id="defaultOpen">Список скриптов</button>
+    </div>
+    <div id="list-scripts" class="tabcontent">
+      <div class="main-box">
+        <form class="srch-name">
+          <div>
+            <input
+              type="text"
+              class="search-txt"
+              type="text"
+              name="ss"
+              placeholder="Поиск по наименованию"
+            />
+            <button class="search first-line" type="submit">Search</button>
+          </div>
+          <a class="refresh first-line">Refresh</a>
+        </form>
+        <div class="table-scripts">
+          <table>
+              <tr >
+                <th>Наименование</th>
+                <th>Дата добавления</th>
+                <th>Номер версии</th>
+                <th>Размер</th>
+                <th>Тип</th>
+                <th>Расположение</th>
+                <th>Описание</th>
+              </tr>
+            {% for script in scripts %}
+              <tr>
+                <td>{{ script.name }}</td>
+                <td>{{ script.creation_date|date:"d.m.Y" }}</td>
+                <td>{{ script.version }}</td>
+                <td>{{ script.size }}</td>
+                <td>Файл "{{ script.file_type }}"</td>
+                <td>{{ script.path }}</td>
+                <td>{{ script.description }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div> 
+    </div>  
+    <div class="btn-page-sripts">
+      <button class="btn-script archive">В архив</button>
+      <button class="btn-script add-script">Добавить скрипт</button>
+    </div>
+    </div>

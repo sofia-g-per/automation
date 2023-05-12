@@ -336,7 +336,12 @@ select{
 /* Вкладка "Скрипты" */
 .srch-name{
     display: flex;
-    padding-left: 20px;
+    padding: 0 50px;
+    justify-content: space-between;
+}
+
+.srch-name>div{
+    display: flex;
 }
 
 .srch-name .search-txt{
@@ -345,13 +350,11 @@ select{
     border-radius: 5px;
     background: url(../img/lupa.png) no-repeat right;
     background-size: 30px;
-    width: 19%;
 }
 
 .table-scripts{
-    float:left;
     width: 80%;
-    margin-left: 2%;
+    margin-left: 18%;
     margin-top: 2%;
     border-radius: 10px;
     border-collapse: collapse;
@@ -377,6 +380,7 @@ select{
 
 .btn-page-sripts{
     margin-left: 17%;
+    gap: 30px;
     display: flex;
     justify-content: flex-end;
 }

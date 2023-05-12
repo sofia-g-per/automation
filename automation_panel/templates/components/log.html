@@ -1,0 +1,83 @@
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'users') " id="defaultOpen">Пользователи</button>
+      <button class="tablinks" onclick="openTab(event, 'results')">Результаты выполнения</button>
+    </div>
+  <!--  Контент первой вкладки  -->
+    <div id="users" class="tabcontent">
+      <div class="main-box">
+          <form class="srch-box">
+            <input
+              type="text"
+              class="search-txt"
+              type="text"
+              name="su"
+              placeholder="Поиск"
+            />
+              <label class="sort-txt"> Сортировать по:</label>
+              <input type="radio" class="custom-checkbox" id="date" name="sort-u" value="action_date">
+              <label class="text" for="date">по дате</label>
+              <input type="radio" class="custom-checkbox" id="users" name="sort-u" value="user__username">
+              <label class="text" for="users">по пользователю</label> 
+              {% comment %} <input type="radio" class="custom-checkbox" id="groups" name="groups" value="yes">
+              <label class="text" for="groups">по группе</label> {% endcomment %}
+            <button class="search first-line" type="submit">Search</button>
+          </form>
+              <div class="table-users">
+                <table>
+                    <tr >
+                      <th class="first" >Пользователь</th>
+                      <th class="first" >Дата и время</th>
+                      <th class="first" >Сообщение</th>
+                    </tr>
+                  {% for userLog in userLogs %}
+                    <tr>
+                      <td>{{ userLog.user }}</td>
+                      <td>{{ userLog.action_date|date:"d.m.Y G:i" }}</td>
+                      <td>{{ userLog.action_description }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </div> 
+      </div>  
+    </div>
+    <div id="results" class="tabcontent">
+      <div class="main-box">
+        <form class="srch-box">
+          <input
+            type="text"
+            class="search-txt"
+            type="text"
+            name="ssr"
+            placeholder="Поиск"
+          />
+            <label class="sort-txt"> Сортировать по:</label>
+            <input type="radio" class="custom-checkbox" id="date" name="sort-s" value="run_date">
+            <label class="text" for="date">по дате</label>
+            {% comment %} <input type="radio" class="custom-checkbox" id="users" name="users" value="yes">
+            <label class="text" for="users">по пользователю</label> {% endcomment %}
+            <input type="radio" class="custom-checkbox" id="groups" name="sort-s" value="run_for__group">
+            <label class="text" for="groups">по группе</label>
+            <button class="search first-line" type="submit">Search</button>
+        </form>
+
+        <div class="table-results">
+          <table>
+              <tr >
+                <th class="first" >Скрипт</th>
+                <th class="first" >Дата и время</th>
+                <th class="first" >IP хоста</th>
+                <th class="first" >Группы</th>
+                <th class="first" >Результат выполнения</th>
+              </tr>
+            {% for scriptResult in scriptResults %}
+              <tr>
+                <td>{{ scriptResult.script.name }}</td>
+                <td>{{ scriptResult.run_date |date:"d.m.Y G:i" }}</td>
+                <td>{{ scriptResult.run_for.ip }}</td>
+                <td>{{ scriptResult.run_for.group }}</td>
+                <td>{{ scriptResult.result }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div> 
+    </div>

@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+  {% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'styles/style.css'%}">
+</head>
+
+<body>
+    <div class="tabs">
+       <!--  Контейнер с вкладками   -->
+       <ul class="tab-header">
+          <li class="tab-header__item js-tab-trigger active" data-tab="1">Обзор</li>
+          <li class="tab-header__item js-tab-trigger" data-tab="2">Скрипты</li>
+          <li class="tab-header__item js-tab-trigger" data-tab="3">Журнал</li>
+       </ul>
+       <!--  Контейнер с блоками, которые содержат контент вкладок   -->
+       <ul class="tab-content">
+            <li class="tab-content__item js-tab-content active" data-tab="1">
+                {% block tab1 %}{% endblock %}
+            </li>
+            <li class="tab-content__item js-tab-content" data-tab="2">
+                {% block tab2 %}{% endblock %}
+            </li>
+            <li class="tab-content__item js-tab-content" data-tab="3">
+                {% block tab3 %}{% endblock %}
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="{% static 'scripts/script.js' %}"></script>
+</html>
