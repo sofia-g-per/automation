@@ -125,7 +125,12 @@ body {
     margin-left: 16%;
     height: 40px;
     display: flex;
-    justify-items: space-between;
+    justify-content: space-between;
+}
+
+.srch-box>div{
+    display: flex;
+    gap: 10px;
 }
 
 .search-txt{
@@ -170,14 +175,23 @@ body {
     border:solid #00BFFF;
     border-radius: 10px;
 }
+
 .name-script,
 .name-hosts{
     display: flex;
     justify-content: left;
     gap: 10px;
     align-items: center;
-
+    flex-wrap: wrap;
 }
+
+
+.name-script>table{
+    width: 100%;
+    padding-left: 5%;
+    align-self: center;
+}
+
 
 .name-script input{
     transform: scale(2);
@@ -204,12 +218,12 @@ table {
     margin-bottom: 10px;
     border-radius: 10px;
  }
- th {
+ th, td {
     padding: 10px 15px;
     font-weight: normal;
  }
 
- th input{
+ th input, td input{
     transform: scale(1.5);
  }
 
@@ -243,9 +257,6 @@ table {
     display: none;
  }
 
-.delete{
-    margin-left: 63%;
-}
 
  .checkbox1:checked ~ .table-info1 {
     display: block;
@@ -324,9 +335,8 @@ select{
 
 /* Вкладка "Скрипты" */
 .srch-name{
-    margin-left: 17%;
-    height: 40px;
-    width: 100%;
+    display: flex;
+    padding-left: 20px;
 }
 
 .srch-name .search-txt{
@@ -367,15 +377,15 @@ select{
 
 .btn-page-sripts{
     margin-left: 17%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .archive{
     border: none;
     background-color:crimson
 }
-.add-script{
-    margin-left: 62.7%;
-}
+
 
 /* Вкладка Журнал */
 .sort-txt{
@@ -401,7 +411,9 @@ select{
 }
 
 .table-users th ,
-.table-results th{
+.table-results th,
+.table-users td ,
+.table-results td{
     border-right: 2px solid #00BFFF;
     margin: 0;
     text-align: start;
@@ -414,6 +426,8 @@ select{
 }
 
 .table-users th:last-child,
-.table-results th:last-child{
+.table-results th:last-child,
+.table-users td:last-child,
+.table-results td:last-child{
     border-right: none;
 }

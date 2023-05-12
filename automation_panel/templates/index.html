@@ -52,9 +52,9 @@
                       <div class="{{forloop.counter}}-script script" >
                         <!-- Кнопка раскрытия информации, чекбок и название скрипта-->
                         <div class="name-script">
-                          <img src="{% static 'img/arrow.svg' %}" alt="arrow" width="40" />
-                          <input type="checkbox" id="" name="" class="checkbox{{forloop.counter}}"/>
-                          <p class="name">{{ hostGroup.name }}</p>
+                            <img src="{% static 'img/arrow.svg' %}" alt="arrow" width="40" />
+                            <input type="checkbox" id="" name="" class="checkbox{{forloop.counter}}"/>
+                            <p class="name">{{ hostGroup.name }}</p>
                           <table class="table-info{{forloop.counter}}">
                             <tr>
                               <th></th>
@@ -108,9 +108,9 @@
                       <div class="{{forloop.counter}}-script script" >
                         <!-- Кнопка раскрытия информации, чекбок и название скрипта-->
                         <div class="name-script">
-                          <img src="{% static 'img/pencil.png' %}" alt="arrow" width="38" />
-                          <input type="checkbox" id="" name="" class="checkbox{{forloop.counter}}"/>
-                          <label class="name">{{ hostGroup.name }}</label>
+                            <img src="{% static 'img/pencil.png' %}" alt="arrow" width="38" />
+                            <input type="checkbox" id="" name="" class="checkbox{{forloop.counter}}"/>
+                            <label class="name">{{ hostGroup.name }}</label>
                           <table class="table-info{{forloop.counter}}">
                             <tr>
                               <th></th>
@@ -155,13 +155,13 @@
                     </div>
                     <div>
                       <button class="refresh first-line">Refresh</button>
-                      <button class="ping first-line">Delete</button>
+                      <input class="ping first-line" form="delete-hosts-form" type="submit" value="Delete"/>
                     </div>
                   </form>
                   <div class="list-hosts">
                     <div class="hosts">
                       <!-- Кнопка раскрытия информации, чекбокc и название скрипта-->
-                      <div class="name-hosts">
+                      <form class="name-hosts" id="delete-hosts-form" action="{% url 'delete-hosts' %}">
                         <table>
                           <tr>
                             <th></th>
@@ -174,7 +174,7 @@
                           </tr>
                             {% for host in hosts %}
                               <tr>
-                                <td bordercolor="white"> <input type="checkbox" id="" name="" /></td>
+                                <td bordercolor="white"> <input type="checkbox" value="{{host.id}}" name="deleteHosts" /></td>
                                 <td>{{ host.name }}</td>
                                 <td>{{ host.network_name }}</td>
                                 <td>{{ host.ip }}</td>
@@ -184,7 +184,7 @@
                               </tr>
                             {% endfor %}
                         </table>
-                      </div>
+                      </form>
                     </div>
                     <!-- Кнопка добавления хоста -->
                     <a href="{% url 'create-host' %}" class="btn-add"> <button class="btn-script">Добавить хост</button></a>
@@ -225,7 +225,7 @@
                     {% for script in scripts %}
                       <tr>
                         <td>{{ script.name }}</td>
-                        <td>{{ script.creation_date }}</td>
+                        <td>{{ script.creation_date|date:"d.m.Y" }}</td>
                         <td>{{ script.version }}</td>
                         <td>{{ script.size }}</td>
                         <td>Файл "{{ script.file_type }}"</td>
@@ -240,7 +240,7 @@
               <button class="btn-script archive">В архив</button>
               <button class="btn-script add-script">Добавить скрипт</button>
             </div>
-          </div>
+            </div>
           </li>
           <li class="tab-content__item js-tab-content" data-tab="3">
             <div class="tab">
@@ -277,7 +277,7 @@
                           {% for userLog in userLogs %}
                             <tr>
                               <td>{{ userLog.user__name }}</td>
-                              <td>{{ userLog.action_date }}</td>
+                              <td>{{ userLog.action_date|date:"d.m.Y G:i" }}</td>
                               <td>{{ userLog.action_description }}</td>
                             </tr>
                           {% endfor %}
@@ -317,7 +317,7 @@
                     {% for scriptResult in scriptResults %}
                       <tr>
                         <td>{{ scriptResult.script.name }}</td>
-                        <td>{{ scriptResult.run_date }}</td>
+                        <td>{{ scriptResult.run_date |date:"d.m.Y G:i" }}</td>
                         <td>{{ scriptResult.run_for.ip }}</td>
                         <td>{{ scriptResult.run_for.group }}</td>
                         <td>{{ scriptResult.result }}</td>

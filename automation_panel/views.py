@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import HostGroup, Host, Script, ScriptResult
 from .forms import HostForm
 from .viewHelpers import search
@@ -38,8 +38,20 @@ def createHost(request):
 
         if(form.is_valid()):
             form.save()
-            return index(request)
+            return redirect(index)
+
         else:
             context["form"] = form
         
     return render(request, "create_host.html", context)
+
+# удаление хостов
+def deleteHosts(request):
+    print(request.GET)
+    if(request.GET['deleteHosts']):
+        ids = [int(id) for id in request.GET['deleteHosts']]
+    print(ids)
+    Host.objects.filter(id__in=ids).delete()
+
+    return redirect(index)
+
