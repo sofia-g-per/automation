@@ -21,4 +21,4 @@ def searchUserLogs(query, sortField=''):
     if(sortField):
         return UserLog.objects.annotate(searchV=SearchVector("script__name", "result", "run_for__group"),).filter(searchV=query).order_by(sortField)
     else:
-        return UserLog.objects.annotate(searchV=SearchVector("user__name", "action_description"),).filter(searchV=query)
+        return UserLog.objects.annotate(searchV=SearchVector("user__username", "action_description"),).filter(searchV=query)

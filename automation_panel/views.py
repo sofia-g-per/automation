@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import HostGroup, Host, Script, ScriptResult
+from .models import HostGroup, Host, Script, ScriptResult, UserLog
 from .forms import HostForm
 from .viewHelpers import search
-from .modelSearchMethods import searchHostGroups, searchHosts, searchScripts, searchScriptResults
+from .modelSearchMethods import searchHostGroups, searchHosts, searchScripts, searchScriptResults, searchUserLogs
 # главная страница
 def index(request):
     
@@ -13,13 +13,12 @@ def index(request):
 
     scripts = search(request, 'ss', '', searchScripts,  Script)
     scriptResults = search(request, 'ssr', 'sort-s', searchScriptResults,  ScriptResult)
-    userLog = search(request, 'su', 'sort-u', searchScriptResults,  ScriptResult)
-
+    userLog = search(request, 'su', 'sort-u', searchUserLogs,  UserLog)
     context = {
         "hosts": hosts,
         "hostGroups": hostGroups,
         "scripts": scripts,
-        "userLog": userLog,
+        "userLogs": userLog,
         "scriptResults": scriptResults
     }
 
@@ -47,11 +46,17 @@ def createHost(request):
 
 # удаление хостов
 def deleteHosts(request):
-    print(request.GET)
     if(request.GET['deleteHosts']):
         ids = [int(id) for id in request.GET['deleteHosts']]
-    print(ids)
     Host.objects.filter(id__in=ids).delete()
+
+    return redirect(index)
+
+# удаление группы хостов
+def deleteHostGroups(request):
+    if(request.GET['deleteHostGroups']):
+        ids = [int(id) for id in request.GET['deleteHostGroups']]
+    HostGroup.objects.filter(id__in=ids).delete()
 
     return redirect(index)
 

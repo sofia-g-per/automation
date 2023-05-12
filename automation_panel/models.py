@@ -9,7 +9,7 @@ class HostGroup(models.Model):
 
 class Host(models.Model):
     name =  models.CharField(max_length=200, null=False, blank=False)
-    ip = models.IntegerField(null=False)
+    ip = models.CharField(max_length=15, null=False)
     group = models.ForeignKey(HostGroup, on_delete = models.SET_NULL, blank=True, null=True)
     network_name = models.CharField(max_length=200, null=False, blank=False)
     hardware = models.CharField(max_length=200)

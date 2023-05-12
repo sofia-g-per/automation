@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('create/host', views.createHost, name="create-host"),
     path('delete/hosts', views.deleteHosts, name="delete-hosts"),
+    path('delete/hostgroups', views.deleteHostGroups, name="delete-host-groups"),
 ]    
